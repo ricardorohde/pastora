@@ -678,6 +678,7 @@
 										<option value="cash"><?= lang("cash"); ?></option>
 										<option value="CC"><?= lang("cc"); ?></option>
 										<option value="Cheque"><?= lang("cheque"); ?></option>
+                                                                                <option value="gift_card"><?= lang("gift_card"); ?></option>
 										
 										
 									</select>
@@ -686,13 +687,7 @@
 						</div>
 						<div class="row">
 							<div class="col-xs-12">
-								<div class="form-group gc" style="display: none;">
-									<?= lang("gift_card_no", "gift_card_no"); ?>
-									<input type="text" id="gift_card_no"
-									class="pa form-control kb-pad gift_card_no gift_card_input"/>
-
-									<div id="gc_details"></div>
-								</div>
+								
 								<div class="pcc" style="display:none;">
 									<div class="form-group">
 										<input type="text" id="swipe" class="form-control swipe swipe_input"

@@ -509,6 +509,7 @@ class Pos extends MY_Controller {
 			$this->data['ccsales'] = $this->pos_model->getRegisterCCSales($register_open_time, $user_id);
 			$this->data['cashsales'] = $this->pos_model->getRegisterCashSales($register_open_time, $user_id);
 			$this->data['chsales'] = $this->pos_model->getRegisterChSales($register_open_time, $user_id);
+                        $this->data['giftsales'] = $this->pos_model->getRegisterGiftSales($register_open_time, $user_id);
 			$this->data['stripesales'] = $this->pos_model->getRegisterStripeSales($register_open_time, $user_id);
 			$this->data['totalsales'] = $this->pos_model->getRegisterSales($register_open_time, $user_id);
 			$this->data['expenses'] = $this->pos_model->getRegisterExpenses($register_open_time);
@@ -635,6 +636,7 @@ class Pos extends MY_Controller {
 		$this->data['ccsales'] = $this->pos_model->getRegisterCCSales($register_open_time);
 		$this->data['cashsales'] = $this->pos_model->getRegisterCashSales($register_open_time);
 		$this->data['chsales'] = $this->pos_model->getRegisterChSales($register_open_time);
+                $this->data['giftsales'] = $this->pos_model->getRegisterGiftSales($register_open_time);
 		$this->data['stripesales'] = $this->pos_model->getRegisterStripeSales($register_open_time);
 		$this->data['totalsales'] = $this->pos_model->getRegisterSales($register_open_time);
 		$this->data['expenses'] = $this->pos_model->getRegisterExpenses($register_open_time);
@@ -652,6 +654,7 @@ class Pos extends MY_Controller {
 		$this->data['ccsales'] = $this->pos_model->getTodayCCSales();
 		$this->data['cashsales'] = $this->pos_model->getTodayCashSales();
 		$this->data['chsales'] = $this->pos_model->getTodayChSales();
+                $this->data['giftsales'] = $this->pos_model->getTodayGift();
 		$this->data['stripesales'] = $this->pos_model->getTodayStripeSales();
 		$this->data['totalsales'] = $this->pos_model->getTodaySales();
 		// $this->data['expenses'] = $this->pos_model->getTodayExpenses();

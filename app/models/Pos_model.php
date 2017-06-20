@@ -120,6 +120,20 @@ class Pos_model extends CI_Model
         }
         return false;
     }
+    
+    public function getTodayGift()
+    {
+        $date = date('Y-m-d 00:00:00');
+        $this->db->select('COUNT(' . $this->db->dbprefix('payments') . '.id) as total_gift, SUM( COALESCE( total, 0 ) ) AS total, SUM( COALESCE( amount, 0 ) ) AS paid', FALSE)
+            ->join('sales', 'sales.id=payments.sale_id', 'left')
+            ->where('payments.date >', $date)->where("{$this->db->dbprefix('payments')}.paid_by", 'gift_card');
+
+        $q = $this->db->get('payments');
+        if ($q->num_rows() > 0) {
+            return $q->row();
+        }
+        return false;
+    }
 
     public function getTodayStripeSales()
     {
@@ -266,6 +280,26 @@ class Pos_model extends CI_Model
         $this->db->select('COUNT(' . $this->db->dbprefix('payments') . '.id) as total_cheques, SUM( COALESCE( grand_total, 0 ) ) AS total, SUM( COALESCE( amount, 0 ) ) AS paid', FALSE)
             ->join('sales', 'sales.id=payments.sale_id', 'left')
             ->where('payments.date >', $date)->where("{$this->db->dbprefix('payments')}.paid_by", 'Cheque');
+        $this->db->where('payments.created_by', $user_id);
+
+        $q = $this->db->get('payments');
+        if ($q->num_rows() > 0) {
+            return $q->row();
+        }
+        return false;
+    }
+    
+    public function getRegisterGiftSales($date, $user_id = NULL)
+    {
+        if (!$date) {
+            $date = $this->session->userdata('register_open_time');
+        }
+        if (!$user_id) {
+            $user_id = $this->session->userdata('user_id');
+        }
+        $this->db->select('COUNT(' . $this->db->dbprefix('payments') . '.id) as total_gift, SUM( COALESCE( grand_total, 0 ) ) AS total, SUM( COALESCE( amount, 0 ) ) AS paid', FALSE)
+            ->join('sales', 'sales.id=payments.sale_id', 'left')
+            ->where('payments.date >', $date)->where("{$this->db->dbprefix('payments')}.paid_by", 'gift_card');
         $this->db->where('payments.created_by', $user_id);
 
         $q = $this->db->get('payments');

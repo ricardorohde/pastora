@@ -31,6 +31,13 @@
                             <span><?= $this->tec->formatMoney($ccsales->paid ? $ccsales->paid : '0.00') . ' (' . $this->tec->formatMoney($ccsales->total ? $ccsales->total : '0.00') . ')'; ?></span>
                         </h4></td>
                 </tr>
+                
+                <tr>
+                    <td style="border-bottom: 1px solid #EEE;"><h4>Vendas em Nota:</h4></td>
+                    <td style="text-align:right;border-bottom: 1px solid #EEE;"><h4>
+                            <span><?= $this->tec->formatMoney($giftsales->paid ? $giftsales->paid : '0.00') . ' (' . $this->tec->formatMoney($giftsales->total ? $giftsales->total : '0.00') . ')'; ?></span>
+                        </h4></td>
+                </tr>
 
                 
                 <tr>
